@@ -1,9 +1,15 @@
 //Write a func,on called reverse which accepts a string and returns
 //a new string in reverse
 
-function reverse(str) {
-  
-}
+const reverse = (str) => {
+  let res = "";
+  for (let i = str.length; i > 0; i--) {
+    res += str[i - 1];
+  }
+  return res;
+};
 
-// reverse('awesome') // 'emosewa'
-// reverse('rithmschool') // 'loohcsmhtir'
+console.log(reverse("awesome")); // 'emosewa'
+console.log(reverse("rithmschool")); // 'loohcsmhtir'
+console.log(reverse(""));
+console.log(reverse("g"));

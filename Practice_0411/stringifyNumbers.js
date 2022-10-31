@@ -2,12 +2,15 @@
 //which are numbers and converts them to strings.
 //Recursion would be a great way to solve this task.
 
-function stringifyNumbers(obj) {
+const stringifyNumbers = (obj) => {
+  console.log("entries", Object.entries(obj));
+  console.log("values", Object.values(obj));
+  Object.entries(obj).forEach((entry) => {
+    if (typeof  === "number") value = value.toString;
+    console.log(typeof value, value);
+  });
+};
 
-  
-}
-
-/*
 let obj = {
   num: 1,
   test: [],
@@ -15,7 +18,10 @@ let obj = {
     val: 4,
     info: {
       isRight: true,
-      random: 66
-    }
-  }
-}*/
+      random: 66,
+    },
+  },
+};
+console.log(obj);
+stringifyNumbers(obj);
+console.log(obj);
