@@ -4,9 +4,11 @@
 //which starts 1 and 1, and where every number thereaHer is equal to the sum of the previous two numbers
 //https://en.wikipedia.org/wiki/Fibonacci_number
 
-function fib(n) {
-  
-}
+const fib = (n) => {
+  if (!n) return 0;
+  else if (n === 1) return 1;
+  else return fib(n - 2) + fib(n - 1);
+};
 
-// fib(4) // 3
-// fib(10) // 55
+console.log(fib(4)); // 3
+console.log(fib(10)); // 55

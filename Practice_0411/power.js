@@ -3,11 +3,10 @@
 //This function should mimic the functionality of
 //Math.pow() – do not worry about negative bases and exponents.
 
+const power = (base, exponent) => {
+  if (!exponent) return 1;
+  else return base * power(base, exponent - 1);
+};
 
-function power(base, exponent) {
-
-
-}
-
-
-// power(2,0) // 1// power(2,2) // 4
+console.log(power(2, 0)); // 1
+console.log(power(2, 2)); // 4
