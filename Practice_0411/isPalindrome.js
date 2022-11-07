@@ -1,12 +1,26 @@
-//Write a recursive func,on called isPalindrome which returns true if the string passed
-//to it is a palindrome (reads the same forward and backward).
-//Otherwise it returns false.
+// Write a recursive func,on called isPalindrome which returns true if the string passed
+// to it is a palindrome (reads the same forward and backward).
+// Otherwise it returns false.
 
-const isPalindrome = (str) => {
+// ITERATIVE
+
+/* const isPalindrome = (str) => {
   for (let i = 0; i < Math.floor(str.length / 2); i++) {
     if (str[i] !== str[str.length - i - 1]) return false;
   }
   return true;
+};*/
+
+// RECURSIVE
+
+const isPalindrome = (str) => {
+  console.log(str);
+  if (str.length <= 1) return true;
+  else
+    return (
+      str[0] === str[str.length - 1] &&
+      isPalindrome(str.slice(1, str.length - 1))
+    );
 };
 
 console.log(isPalindrome("h"));
