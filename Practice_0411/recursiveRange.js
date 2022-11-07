@@ -8,3 +8,4 @@ const recursiveRange = (x) => {
 
 console.log(recursiveRange(6)); // 21
 console.log(recursiveRange(10)); // 55
+console.log(recursiveRange(4)); // 10

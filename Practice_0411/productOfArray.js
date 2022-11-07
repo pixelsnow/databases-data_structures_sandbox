@@ -12,3 +12,4 @@ console.log(productOfArray([1, 2, 3])); // 6
 console.log(productOfArray([1, 2, 3, 10])); // 60
 console.log(productOfArray([3]));
 console.log(productOfArray([]));
+console.log(productOfArray([1, 1, 1]));
