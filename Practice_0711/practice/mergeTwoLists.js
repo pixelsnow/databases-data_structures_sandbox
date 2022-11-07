@@ -144,8 +144,41 @@ const hasSameData = (l1, l2) => {
   return s1 === s2;
 };
 
-let list1 = new SinglyLinkedList();
+const mergeTwoLists = (l1, l2) => {
+  tmp1 = l1.head;
+  tmp2 = l2.head;
+  res = new SinglyLinkedList();
+  while (tmp1 && tmp2) {
+    if (tmp1.val < tmp2.val) {
+      res.push(tmp1.val);
+      tmp1 = tmp1.next;
+    } else {
+      res.push(tmp2.val);
+      tmp2 = tmp2.next;
+    }
+  }
+  while (tmp1) {
+    res.push(tmp1.val);
+    tmp1 = tmp1.next;
+  }
+  while (tmp2) {
+    res.push(tmp2.val);
+    tmp2 = tmp2.next;
+  }
+  return res;
+};
 
+let list1 = new SinglyLinkedList();
+let list2 = new SinglyLinkedList();
+
+list1.push(2);
+list1.push(4);
+list1.push(6);
+list2.push(1);
+list2.push(3);
+list2.push(7);
+
+mergeTwoLists(list1, list2).print();
 /*
 Given two sorted linked lists merge them while keeping the asc order.
 
