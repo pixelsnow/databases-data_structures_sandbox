@@ -3,17 +3,16 @@
 //Recursion would be a great way to solve this task.
 
 const stringifyNumbers = (obj) => {
-  console.log("entries", Object.entries(obj));
-  console.log("values", Object.values(obj));
   Object.entries(obj).forEach((entry) => {
-    if (typeof  === "number") value = value.toString;
-    console.log(typeof value, value);
+    if (typeof entry[1] === "number") obj[entry[0]] = entry[1].toString();
+    else if (typeof entry[1] === "object") stringifyNumbers(obj[entry[0]]);
   });
 };
 
 let obj = {
   num: 1,
   test: [],
+  str: "hei",
   data: {
     val: 4,
     info: {
