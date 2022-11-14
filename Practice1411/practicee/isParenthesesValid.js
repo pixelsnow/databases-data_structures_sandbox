@@ -2,7 +2,11 @@
 // Validate they are correctly closed and opened.
 
 function isParenthesesValid(string) {
-
+    if (!string.length)
+        return true;
+    if (string.length === 1)
+        return false;
+    if 
 }
 
 
