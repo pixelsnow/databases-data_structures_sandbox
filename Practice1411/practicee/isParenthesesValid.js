@@ -145,22 +145,17 @@ const areMatchingBrackets = (c1, c2) => {
 
 const isParenthesesValid = (string) => {
   const stack = new SinglyLinkedList();
-  /*   console.log("list initialised");
-  stack.print();
-  stack.unshift("a");
-  stack.print(); */
-
-  while (string.length > 0) {
+  while (string.length) {
     // is we encounter an opening bracket, push it to a stack
     if (isOpeningBracket(string.charAt(0))) {
       stack.unshift(string.charAt(0));
     } else {
+      // if stack is empty, there's no match for the bracket
       if (!stack.length) return false;
-      const topOfStack = stack.shift();
+      const topOfStack = stack.shift().val;
       // if we encounter a closing bracket,
-      if (!areMatchingBrackets(topOfStack.val, string.charAt(0))) {
-        // and either stack is empty or the bracket is not matching the one on top,
-        // the brackets are invalid
+      if (!areMatchingBrackets(topOfStack, string.charAt(0))) {
+        // if bracket is not matching the one on top, the brackets are invalid
         return false;
       }
     }
@@ -178,5 +173,5 @@ console.log(isParenthesesValid("(")); // false (closing parentheses is missing)
 console.log(isParenthesesValid("([{}])")); // true
 console.log(isParenthesesValid("[{]}")); // false (brackets are not closed in the right order)
 console.log(isParenthesesValid("([{)}]")); // false (closing is out of order)
-console.log(isParenthesesValid("([{}])([{)}]"));
-console.log(isParenthesesValid("(([{}])(){}[](()))"));
+console.log(isParenthesesValid("([{}])([{)}]")); // false
+console.log(isParenthesesValid("(([{}])(){}[](()))")); // true
