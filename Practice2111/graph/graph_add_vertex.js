@@ -1,11 +1,13 @@
-class Graph{
-    constructor(){
-        this.adjacencyList = {};
-    }
-    addVertex(vertex){
-        if(!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
-    }
+class Graph {
+  constructor() {
+    this.adjacencyList = {};
+  }
+  addVertex(vertex) {
+    if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
+  }
 }
 
-//let g = new Graph()
-//g.addVertex("Tokyo")
+let g = new Graph();
+g.addVertex("Tokyo");
+console.log(g);
+console.log(g.adjacencyList);
