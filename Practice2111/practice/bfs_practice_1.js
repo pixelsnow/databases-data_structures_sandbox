@@ -52,9 +52,32 @@ const breadthFirstSearch = (root, value) => {
   return false;
 };
 
+const depthFirstSearch = (root, value) => {
+  const stack = [root];
+  while (stack.length > 0) {
+    const curr = stack.pop();
+    // console.log(curr.val);
+    if (curr.val === value) return true;
+    if (curr.left !== null) {
+      stack.push(curr.left);
+    }
+    if (curr.right !== null) {
+      stack.push(curr.right);
+    }
+  }
+  return false;
+};
+
+console.log(treeContainsValue(a, "h"));
 console.log(breadthFirstSearch(a, "e")); // true
 console.log(breadthFirstSearch(a, "z")); // false
 console.log(breadthFirstSearch(a, "c")); // true
 console.log(breadthFirstSearch(a, "b")); // true
 console.log(breadthFirstSearch(a, "h")); // false
 console.log(breadthFirstSearch(a, "a")); // true
+console.log(depthFirstSearch(a, "e")); // true
+console.log(depthFirstSearch(a, "z")); // false
+console.log(depthFirstSearch(a, "c")); // true
+console.log(depthFirstSearch(a, "b")); // true
+console.log(depthFirstSearch(a, "h")); // false
+console.log(depthFirstSearch(a, "a")); // true

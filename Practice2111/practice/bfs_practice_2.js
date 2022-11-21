@@ -52,5 +52,23 @@ const breadthFirstSum = (root) => {
   return res;
 };
 
+const depthFirstSum = (root, value) => {
+  res = 0;
+  const stack = [root];
+  while (stack.length > 0) {
+    const curr = stack.pop();
+    // console.log(curr.val);
+    res += curr.val;
+    if (curr.left !== null) {
+      stack.push(curr.left);
+    }
+    if (curr.right !== null) {
+      stack.push(curr.right);
+    }
+  }
+  return res;
+};
+
 console.log(recursiveSum(a));
 console.log(breadthFirstSum(a));
+console.log(depthFirstSum(a));

@@ -7,7 +7,7 @@
  * @returns {[number, number]} - Array with index 1 and index 2
  */
 
-
-console.log(twoSum([113, 248, 80, 200, 91, 201, 68], 316)); // [1, 6] (248 + 68 = 316)
-
-console.log(twoSum([150, 100, 200], 150)); // [] (No two numbers add up to 150)
+// [1, 6] (248 + 68 = 316)
+console.log(twoSum([113, 248, 80, 200, 91, 201, 68], 316));
+// [] (No two numbers add up to 150)
+console.log(twoSum([150, 100, 200], 150));
