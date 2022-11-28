@@ -61,6 +61,7 @@ const drawGame = () => {
 };
 
 const endGame = () => {
+  // Set gameOn state to false
   gameOn = false;
   // Show game over message
   ctx.fillRect(0, 0, 50, 50);
@@ -68,11 +69,10 @@ const endGame = () => {
   ctx.font = "20px Arial";
   ctx.fillText("game over", 30, 50);
   ctx.fillText("refresh to start a new game", 30, 80);
-  console.log("game over");
 };
 
+// Handling key press events
 const keyDown = (e) => {
-  console.log(e.keyCode, "pressed");
   if (e.keyCode == 38) {
     // If the snake was already moving in the same direction or the opposite direction, do nothing
     if (direction.y) return;
@@ -134,7 +134,6 @@ const inSnakeBody = (point) => {
   let collisionDetected = false;
   snakeBody.forEach((cell) => {
     if (cell.x === point.x && cell.y === point.y) {
-      console.log("SELF-COLLISION DETECTED");
       collisionDetected = true;
     }
   });
