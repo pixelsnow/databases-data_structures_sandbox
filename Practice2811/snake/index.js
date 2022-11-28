@@ -49,10 +49,11 @@ const initGame = () => {
 const drawGame = () => {
   // If game is over, stop looping
   if (!gameOn) return;
+  // Clear canvas
+  clearScreen();
   // Move snake
   changeSnakePosition();
-  // Render canvas
-  clearScreen();
+  // Render snake and apple
   drawSnake();
   drawApple();
   // Recursive loop
@@ -62,10 +63,12 @@ const drawGame = () => {
 const endGame = () => {
   gameOn = false;
   // Show game over message
+  ctx.fillRect(0, 0, 50, 50);
   ctx.fillStyle = "white";
   ctx.font = "20px Arial";
   ctx.fillText("game over", 30, 50);
   ctx.fillText("refresh to start a new game", 30, 80);
+  console.log("game over");
 };
 
 const keyDown = (e) => {
