@@ -18,13 +18,13 @@ const initGame = () => {
   ctx.fillStyle = "white";
   ctx.font = "20px Arial";
   ctx.fillText("press s to start", 30, 50);
-  // Pick a location for the apple
-
+  // Set game parameters
   gameOn = false; // Game off until user presses s
   score = 0;
   speed = 400;
   direction = { x: 0, y: -1 }; // When the game starts the snake goes up
   snakeBody = [
+    // the snake is roughly in the middle of the canvas and head is up
     {
       x: canvas.clientWidth / cellSize / 2,
       y: canvas.clientHeight / cellSize / 2 + 3,
@@ -42,21 +42,26 @@ const initGame = () => {
       y: canvas.clientHeight / cellSize / 2,
     },
   ];
-  apple = getNewApple();
+  apple = getNewApple(); // Pick location for the apple
 };
 
+// Main game function that loops until the game is over
 const drawGame = () => {
-  if (!gameOn) return; // If game is over, stop looping
-  clearScreen();
+  // If game is over, stop looping
+  if (!gameOn) return;
+  // Move snake
   changeSnakePosition();
+  // Render canvas
+  clearScreen();
   drawSnake();
   drawApple();
-  setTimeout(drawGame, speed); // Recursively calling this function
+  // Recursive loop
+  setTimeout(drawGame, speed);
 };
 
 const endGame = () => {
   gameOn = false;
-  // Render message
+  // Show game over message
   ctx.fillStyle = "white";
   ctx.font = "20px Arial";
   ctx.fillText("game over", 30, 50);
@@ -68,6 +73,7 @@ const keyDown = (e) => {
   if (e.keyCode == 38) {
     // If the snake was already moving in the same direction or the opposite direction, do nothing
     if (direction.y) return;
+    // Otherwise change direction
     direction = { x: 0, y: -1 };
   } else if (e.keyCode == 40) {
     if (direction.y) return;
@@ -83,12 +89,12 @@ const keyDown = (e) => {
   } else if (e.keyCode == 83) {
     gameOn = true;
     drawGame();
-  } /* else if (e.keyCode == 78) {
-  } */
+  }
 };
 
 /* RENDERING FUNCTIONS */
 
+// Covers the entire canvas with background colour
 const clearScreen = () => {
   ctx.fillStyle = "lightpink";
   ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
@@ -111,8 +117,6 @@ const drawSnake = () => {
 // If "point" is inside the boundaries of canvas, returns true
 // If point is outside the canvas, returns false.
 const inCanvas = (point) => {
-  console.log(point);
-  console.log(canvas.clientWidth / cellSize);
   return (
     point.x >= 0 &&
     point.y >= 0 &&
@@ -128,51 +132,59 @@ const inSnakeBody = (point) => {
   snakeBody.forEach((cell) => {
     if (cell.x === point.x && cell.y === point.y) {
       console.log("SELF-COLLISION DETECTED");
-      console.log(cell.x, point.x, cell.y, point.y);
       collisionDetected = true;
     }
   });
   return collisionDetected;
 };
 
+//
 const changeSnakePosition = () => {
+  // Set new head coordinates
   const head = snakeBody[0];
   const currHead = snakeBody[snakeBody.length - 1];
   const newHead = { x: currHead.x + direction.x, y: currHead.y + direction.y };
+  // Check if snake hit a wall or itself
   if (!inCanvas(newHead) || inSnakeBody(newHead)) {
-    console.log("ENDING GAME");
+    // If so, end game
     endGame();
   }
+  // If snake ate the apple
   if (newHead.x === apple.x && newHead.y === apple.y) {
-    console.log("got apple!");
+    // Increase score and speed
     score++;
     speed *= 0.95;
-    console.log("new speed is", speed);
+    // Display score and speed
     scoreDisplay.textContent = score;
     speedDisplay.textContent = Math.round(speed);
+    // Set new apple
     apple = getNewApple();
   } else {
-    console.log("no apple :(");
-    console.log(snakeBody.shift());
+    // If snake didn't eat the apple, shift the tail
+    // (otherwise snake would grow, so we wouldn't shift)
+    snakeBody.shift();
   }
+  // Move the snake
   snakeBody.push(newHead);
 };
 
+// Returns a random integer between min and max (included)
 const getRandomIntInclusive = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
+// Returns object of new coordinates of an apple
 const getNewApple = () => {
   let newApple;
   do {
+    // get new random coordinates
     newApple = {
       x: getRandomIntInclusive(0, canvas.clientWidth / cellSize - 1),
       y: getRandomIntInclusive(0, canvas.clientHeight / cellSize - 1),
     };
   } while (inSnakeBody(newApple)); // If the new apple overlaps with snake, keep picking a new apple
-  console.log(newApple, "is new apple");
   return newApple;
 };
 
