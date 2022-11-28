@@ -65,7 +65,8 @@ const changeSnakePosition = () => {
   if (newHead[0] === apple[0] && newHead[1] === apple[1]) {
     console.log("got apple!");
     score++;
-    speed += 40;
+    speed *= 0.9;
+    console.log("new speed is", speed);
     scoreDisplay.textContent = score;
     setApple();
   } else {
@@ -139,7 +140,6 @@ const keyDown = (e) => {
     gameOn = true;
     drawGame();
   }
-  console.log(velocity);
 };
 
 document.body.addEventListener("keydown", keyDown);
