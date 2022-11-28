@@ -141,7 +141,7 @@ const inSnakeBody = (point) => {
   return collisionDetected;
 };
 
-//
+// Main logic function that moves the snake and detects collisions
 const changeSnakePosition = () => {
   // Set new head coordinates
   const head = snakeBody[0];
