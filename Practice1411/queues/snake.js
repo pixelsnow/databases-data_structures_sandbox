@@ -50,6 +50,7 @@ class Snake {
     stdin.resume();
     stdin.setEncoding("utf8");
     stdin.on("data", (keypress) => {
+      y;
       if (keypress === "w") this.move("up");
       if (keypress === "a") this.move("left");
       if (keypress === "s") this.move("down");
