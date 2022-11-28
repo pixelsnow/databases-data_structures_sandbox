@@ -1,5 +1,5 @@
 class HashTable {
-  constructor(size=53){
+  constructor(size = 53) {
     this.keyMap = new Array(size);
   }
 
@@ -8,24 +8,24 @@ class HashTable {
     let WEIRD_PRIME = 31;
     for (let i = 0; i < Math.min(key.length, 100); i++) {
       let char = key[i];
-      let value = char.charCodeAt(0) - 96
+      let value = char.charCodeAt(0) - 96;
       total = (total * WEIRD_PRIME + value) % this.keyMap.length;
     }
     return total;
   }
-  set(key,value){
+  set(key, value) {
     let index = this._hash(key);
-    if(!this.keyMap[index]){
+    if (!this.keyMap[index]) {
       this.keyMap[index] = [];
     }
     this.keyMap[index].push([key, value]);
   }
-  get(key){
+  get(key) {
     let index = this._hash(key);
-    if(this.keyMap[index]){
-      for(let i = 0; i < this.keyMap[index].length; i++){
-        if(this.keyMap[index][i][0] === key) {
-          return this.keyMap[index][i][1]
+    if (this.keyMap[index]) {
+      for (let i = 0; i < this.keyMap[index].length; i++) {
+        if (this.keyMap[index][i][0] === key) {
+          return this.keyMap[index][i][1];
         }
       }
     }
@@ -34,14 +34,17 @@ class HashTable {
 }
 
 let ht = new HashTable(17);
-ht.set("maroon","#800000")
-ht.set("yellow","#FFFF00")
-ht.set("olive","#808000")
-ht.set("salmon","#FA8072")
-ht.set("lightcoral","#F08080")
-ht.set("mediumvioletred","#C71585")
-ht.set("plum","#DDA0DD")
-
+console.log(ht);
+ht.set("maroon", "#800000");
+ht.set("yellow", "#FFFF00");
+ht.set("yellow", "#FFFF11");
+ht.set("olive", "#808000");
+ht.set("salmon", "#FA8072");
+ht.set("lightcoral", "#F08080");
+ht.set("mediumvioletred", "#C71585");
+ht.set("plum", "#DDA0DD");
+console.log(ht);
+console.log(ht.get("yellow"));
 //ht.get("yellow") to check in console
 // ht.get("yellownotthere") you get undefined
 // ht.get("maroon")
