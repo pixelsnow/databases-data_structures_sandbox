@@ -3,7 +3,7 @@ const ctx = canvas.getContext("2d");
 const scoreDisplay = document.querySelector("#score-count");
 const speedDisplay = document.querySelector("#speed");
 
-const cellSize = 20;
+const cellSize = 25;
 let gameOn;
 let score;
 let speed;
@@ -21,7 +21,7 @@ const initGame = () => {
   // Set game parameters
   gameOn = false; // Game off until user presses s
   score = 0;
-  speed = 400;
+  speed = 300;
   direction = { x: 0, y: -1 }; // When the game starts the snake goes up
   snakeBody = [
     // the snake is roughly in the middle of the canvas and head is up
@@ -155,7 +155,7 @@ const changeSnakePosition = () => {
   if (newHead.x === apple.x && newHead.y === apple.y) {
     // Increase score and speed
     score++;
-    speed *= 0.95;
+    speed *= 0.96;
     // Display score and speed
     scoreDisplay.textContent = score;
     speedDisplay.textContent = Math.round(speed);
